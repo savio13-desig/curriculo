@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sávio Reinaldo · Desenvolvedor júnior em automação e IA</title>
+<meta name="description" content="Currículo interativo de Sávio Reinaldo: agentes de IA, automações e aplicações web, com projetos em produção.">
+<style>
+  :root { --char:#2b2d31; --char2:#34373d; --amber:#f6b000; --amber-d:#8a5a00; --ink:#1d2026; --muted:#5d6370; --line:#d9dce2; --soft:#f4f4f6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font: 17px/1.65 "Segoe UI", system-ui, sans-serif; color: var(--ink); background: #fff; -webkit-text-size-adjust: 100%; }
+  a { color: inherit; }
+  .w { max-width: 940px; margin: 0 auto; padding: 0 22px; }
+  .mono { font-family: "Cascadia Mono", Consolas, monospace; }
+
+  /* animação de entrada ao rolar */
+  .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .rv.in { opacity: 1; transform: none; }
+
+  /* hero */
+  .hero { position: relative; background: var(--char); color: #fff; overflow: hidden; padding: 56px 0 64px; }
+  .hero::before { content: ""; position: absolute; left: 0; top: 0; width: min(46vw, 300px); aspect-ratio: 1; background: var(--amber); clip-path: polygon(0 0, 100% 0, 0 100%); animation: tri 1s ease both; }
+  @keyframes tri { from { transform: translate(-40%, -40%); } to { transform: none; } }
+  .hero .w { position: relative; display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 760px) { .hero .w { grid-template-columns: 220px 1fr; gap: 44px; } }
+  .foto { width: 168px; height: 168px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 0 0 0 rgba(246,176,0,.6); animation: pulse 3s ease-out infinite; justify-self: center; }
+  @media (min-width: 760px) { .foto { width: 220px; height: 220px; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(246,176,0,.55); } 70%, 100% { box-shadow: 0 0 0 26px rgba(246,176,0,0); } }
+  h1 { font: 800 clamp(2.2rem, 8vw, 3.8rem)/1 "Segoe UI", Arial, sans-serif; text-transform: uppercase; letter-spacing: .5px; }
+  h1 em { font-style: normal; color: var(--amber); }
+  .role { margin-top: 12px; font: 600 .8rem "Segoe UI", sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #c9ccd3; }
+  .type { margin-top: 20px; font: 600 clamp(1.1rem, 4.4vw, 1.5rem)/1.3 "Cascadia Mono", Consolas, monospace; min-height: 2.6em; }
+  .type b { color: var(--amber); }
+  .caret { display: inline-block; width: .55ch; height: 1.05em; margin-left: 2px; background: var(--amber); vertical-align: -.15em; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .btns { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 10px 20px; border-radius: 6px; font-weight: 700; text-decoration: none; background: var(--amber); color: var(--ink); transition: transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.o { background: transparent; color: #fff; border: 2px solid #5a5e66; }
+
+  /* números */
+  .nums { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: -34px 0 0; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  @media (min-width: 700px) { .nums { grid-template-columns: repeat(4, 1fr); } }
+  .nums div { background: #fff; padding: 18px 16px 16px; }
+  .nums b { display: block; font: 700 clamp(1.7rem, 6vw, 2.3rem)/1 Georgia, serif; }
+  .nums span { display: block; margin-top: 6px; font-size: .84rem; line-height: 1.35; color: var(--muted); }
+
+  /* seções */
+  section { padding: 56px 0 0; }
+  h2 { font: 800 1.15rem "Segoe UI", sans-serif; text-transform: uppercase; letter-spacing: .6px; display: flex; align-items: center; gap: 12px; }
+  h2::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--amber); flex: none; }
+  h2::after { content: ""; flex: 1; height: 2px; background: var(--line); }
+  .lead { margin-top: 16px; max-width: 720px; font-size: 1.08rem; }
+  .lead em { font-style: normal; background: linear-gradient(transparent 62%, #ffd666 62%); }
+
+  /* fluxo animado do agente */
+  .flow { margin-top: 24px; padding: 24px 18px; background: var(--char); color: #fff; border-radius: 8px; }
+  .flow .cap { font: .72rem "Cascadia Mono", Consolas, monospace; letter-spacing: 1px; color: #aeb3bd; text-transform: uppercase; }
+  .row { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 18px; }
+  .node { min-width: 230px; text-align: center; padding: 11px 18px; border: 2px solid #4a4e57; border-radius: 6px; background: var(--char2); font-weight: 700; }
+  .node small { display: block; font-weight: 400; font-size: .76rem; color: #aeb3bd; }
+  .node.hot { border-color: var(--amber); color: var(--amber); animation: glow 2.4s ease-in-out infinite; }
+  @keyframes glow { 50% { box-shadow: 0 0 22px rgba(246,176,0,.45); } }
+  .wire { position: relative; width: 2px; height: 30px; background: #4a4e57; overflow: hidden; }
+  .wire::after { content: ""; position: absolute; left: -2px; top: -8px; width: 6px; height: 8px; border-radius: 3px; background: var(--amber); animation: drop 1.6s linear infinite; }
+  @keyframes drop { to { top: 100%; } }
+  .subs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; width: 100%; margin-top: 4px; }
+  .sub { padding: 10px; text-align: center; font-size: .9rem; font-weight: 600; border: 2px solid #4a4e57; border-radius: 6px; background: var(--char2); animation: lit 7.5s infinite; }
+  .sub:nth-child(1) { animation-delay: 0s; } .sub:nth-child(2) { animation-delay: 1.5s; } .sub:nth-child(3) { animation-delay: 3s; }
+  .sub:nth-child(4) { animation-delay: 4.5s; } .sub:nth-child(5) { animation-delay: 6s; }
+  @keyframes lit { 0%, 20%, 100% { border-color: #4a4e57; color: #fff; } 4%, 16% { border-color: var(--amber); color: var(--amber); } }
+  .flow .note { margin-top: 18px; text-align: center; font-size: .85rem; color: #aeb3bd; }
+
+  /* habilidades */
+  .legend { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .84rem; color: var(--muted); }
+  .skills { margin-top: 20px; display: grid; gap: 16px 40px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .skills { grid-template-columns: 1fr 1fr; } }
+  .sk .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .sk b { font-size: .98rem; }
+  .sk .lv { font: .72rem "Cascadia Mono", Consolas, monospace; color: var(--amber-d); white-space: nowrap; }
+  .bar { margin-top: 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .bar i { height: 9px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+  .bar i::after { content: ""; position: absolute; inset: 0; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
+  .sk.in .bar i.on::after { transform: scaleX(1); }
+  .sk.in .bar i:nth-child(2)::after { transition-delay: .25s; } .sk.in .bar i:nth-child(3)::after { transition-delay: .5s; }
+  .chips { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { padding: 4px 12px; font-size: .88rem; background: var(--soft); border-bottom: 2px solid var(--amber); transition: transform .2s, background .2s; }
+  .chips span:hover { transform: translateY(-3px); background: #ffe9b0; }
+
+  /* projetos */
+  .cards { margin-top: 22px; display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .cards { grid-template-columns: 1fr 1fr; } }
+  .card { padding: 20px 20px 16px; border: 1px solid var(--line); border-top: 4px solid var(--amber); border-radius: 6px; background: #fff; transition: transform .25s, box-shadow .25s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,.1); }
+  .card h3 { font-size: 1.08rem; line-height: 1.3; }
+  .badge { display: inline-block; margin-top: 6px; padding: 1px 9px; font: .72rem "Cascadia Mono", Consolas, monospace; background: #ffe3a6; border-radius: 3px; }
+  .card p { margin-top: 10px; font-size: .95rem; line-height: 1.55; color: #343942; }
+  .card a { display: inline-block; margin-top: 10px; color: var(--amber-d); font-weight: 700; font-size: .9rem; }
+
+  /* linha do tempo */
+  .tl { margin-top: 22px; position: relative; padding-left: 30px; }
+  .tl::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .tl .it { position: relative; margin-bottom: 22px; }
+  .tl .it::before { content: ""; position: absolute; left: -30px; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px #fff; }
+  .tl h3 { font-size: 1.05rem; } .tl .when { font: .78rem "Cascadia Mono", Consolas, monospace; color: var(--muted); }
+  .tl p { margin-top: 6px; font-size: .96rem; }
+
+  /* contato */
+  .contact { margin-top: 56px; background: var(--char); color: #fff; padding: 48px 0 40px; text-align: center; }
+  .contact h2 { justify-content: center; } .contact h2::after, .contact h2::before { display: none; }
+  .contact h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
+  .contact p { margin-top: 10px; color: #c9ccd3; }
+  .contact .btns { justify-content: center; }
+  footer { padding: 18px; text-align: center; font-size: .8rem; background: #232529; color: #9aa0ab; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv { opacity: 1; transform: none; } .bar i.on::after { transform: scaleX(1); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="w">
+  <img class="foto" src="foto.jpg" alt="Foto de Sávio Reinaldo">
+  <div>
+    <h1>Sávio <em>Reinaldo</em></h1>
+    <div class="role">Desenvolvedor júnior · Automação e agentes de IA</div>
+    <div class="type" aria-live="polite">Eu construo <b id="t"></b><span class="caret"></span></div>
+    <div class="btns">
+      <a class="btn" href="https://wa.me/5511942132445">Chamar no WhatsApp</a>
+      <a class="btn o" href="https://savio13-desig.github.io/carta-apresentacao/">Ler minha carta</a>
+      <a class="btn o" href="https://github.com/savio13-desig">GitHub</a>
+    </div>
+  </div>
+</div></header>
+
+<div class="w">
+  <div class="nums rv">
+    <div><b data-n="1500" data-f="int">0</b><span>conversas ao mesmo tempo no agente, sem perder o contexto</span></div>
+    <div><b data-n="6" data-f="int">0</b><span>workflows no agente de IA do WhatsApp, em produção</span></div>
+    <div><b data-n="29.3" data-f="neg">0</b><span>de bytes de produção com pipeline esbuild</span></div>
+    <div><b data-n="37" data-f="int">0</b><span>commits, 5 pull requests e 9 issues em um projeto</span></div>
+  </div>
+</div>
+
+<main class="w">
+
+  <section class="rv">
+    <h2>Quem sou</h2>
+    <p class="lead">Desenvolvedor júnior em automação e IA. Conecto sistemas e tiro tarefas repetitivas do caminho. <em>Já tenho agentes em produção com clientes reais.</em> Estudo Análise e Desenvolvimento de Sistemas na Cruzeiro do Sul e busco estágio ou vaga júnior, remoto ou em São Paulo.</p>
+  </section>
+
+  <section class="rv">
+    <h2>O agente por dentro</h2>
+    <div class="flow">
+      <div class="cap">fluxo do agente de atendimento no WhatsApp</div>
+      <div class="row">
+        <div class="node">Paciente<small>manda mensagem no WhatsApp</small></div>
+        <div class="wire"></div>
+        <div class="node hot">Fluxo principal<small>n8n · Google Gemini</small></div>
+        <div class="wire"></div>
+        <div class="subs">
+          <div class="sub">Agendamento</div><div class="sub">Pagamento</div><div class="sub">Lembretes</div><div class="sub">Triagem de crise</div><div class="sub">Escalação humana</div>
+        </div>
+      </div>
+      <p class="note">Calendar · Sheets · Gmail · Pix do Mercado Pago</p>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Habilidades e nível</h2>
+    <div class="legend"><span>▮▯▯ estudando e praticando</span><span>▮▮▯ entregue em projetos</span><span>▮▮▮ em produção com clientes</span></div>
+    <div class="skills" id="skills"></div>
+    <div class="chips">
+      <span>HTML5</span><span>CSS3</span><span>APIs REST</span><span>Webhooks</span><span>Apps Script</span><span>Google Calendar</span><span>Sheets</span><span>Gmail</span><span>Meta / Instagram API</span><span>Telegram</span><span>CI/CD</span><span>GitFlow</span><span>SemVer</span><span>Node.js</span><span>esbuild</span><span>WCAG 2.1 AA</span>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Projetos</h2>
+    <div class="cards">
+      <div class="card"><h3>Agente de atendimento no WhatsApp</h3><span class="badge">em produção</span>
+        <p>Triagem, agendamento, remarcação e cancelamento para um consultório, com pacientes reais. Testado com 1.500 conversas simultâneas e spam de bots, sem perder o contexto.</p><a href="https://github.com/savio13-desig/agente-nia-ruth">Ver no GitHub →</a></div>
+      <div class="card"><h3>Agentes de IA no Instagram</h3><span class="badge">plataforma da Meta</span>
+        <p>Atendimento direto dentro do Instagram, levando a lógica do WhatsApp para onde o cliente já conversa.</p></div>
+      <div class="card"><h3>Robô de prospecção no Telegram</h3><span class="badge">nicho específico</span>
+        <p>Faz a prospecção de clientes de um nicho e entrega os contatos prontos, para quem vende gastar o tempo conversando.</p></div>
+      <div class="card"><h3>Robô de estudo de criptomoedas</h3><span class="badge">em desenvolvimento</span>
+        <p>Estuda o mercado e testa estratégias contra dados históricos. Ainda em aperfeiçoamento.</p></div>
+      <div class="card"><h3>ONG Esperança Viva</h3><span class="badge">projeto acadêmico</span>
+        <p>SPA em JavaScript puro, sem frameworks. Pipeline esbuild: −29,3% de bytes e JavaScript de 9 para 1 requisição, com deploy automático.</p><a href="https://github.com/savio13-desig/ong-esperanca-viva">Ver no GitHub →</a></div>
+      <div class="card"><h3>Aplicações para pequenos negócios</h3><span class="badge">demos no ar</span>
+        <p>Advocacia, barbearia e cardápio por QR code, cada uma com página do cliente e painel do dono.</p>
+        <a href="https://savio13-desig.github.io/site-advocacia">Advocacia</a> · <a href="https://savio13-desig.github.io/agendamento-barbearia">Barbearia</a> · <a href="https://savio13-desig.github.io/cardapio-qr-mesa">Cardápio</a></div>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Experiência</h2>
+    <div class="tl">
+      <div class="it"><h3>Desenvolvedor de automações e sites · novapicks</h3><div class="when">2026 – atual · empresa própria, remota</div>
+        <p>Entrego agentes de IA, automações e sites para pequenos negócios, do levantamento até a publicação.</p></div>
+      <div class="it"><h3>Assistente de coordenação · UNIP</h3><div class="when">2025 – 2026</div>
+        <p>Atendi alunos, professores e reitores e organizei os eventos dos alunos fora da universidade, incluindo extensão comunitária.</p></div>
+      <div class="it"><h3>Análise e Desenvolvimento de Sistemas · Cruzeiro do Sul</h3><div class="when">2025 – cursando</div></div>
+    </div>
+  </section>
+</main>
+
+<div class="contact">
+  <div class="w rv">
+    <h2>Vamos construir algo juntos?</h2>
+    <p>Quero aprender com uma equipe e entregar desde o primeiro mês.</p>
+    <div class="btns">
+      <a class="btn" href="https://wa.me/5511942132445">WhatsApp · (11) 94213-2445</a>
+      <a class="btn o" href="mailto:saviosesi@gmail.com">saviosesi@gmail.com</a>
+      <a class="btn o" href="Curriculo-Savio-Reinaldo.pdf">Baixar currículo em PDF</a>
+    </div>
+  </div>
+</div>
+<footer>Sávio Reinaldo · São Paulo, SP · aceito remoto</footer>
+
+<script>
+// habilidades: 1 = estudando/praticando, 2 = entregue em projetos, 3 = em produção com clientes (ajuste aqui)
+var SKILLS = [
+  ["n8n", 3, "em produção"], ["WhatsApp Business API", 3, "em produção"], ["Google Gemini / prompts", 3, "em produção"],
+  ["Pix (Mercado Pago)", 3, "em produção"], ["JavaScript", 2, "projetos"], ["Git e GitHub Actions", 3, "em produção"],
+  ["Python", 3, "em produção"], ["Robôs de Telegram", 3, "em produção"], ["Inglês", 1, "básico"], ["Dados e testes (cripto)", 1, "praticando"]
+];
+var box = document.getElementById("skills");
+SKILLS.forEach(function (s) {
+  var d = document.createElement("div"); d.className = "sk";
+  d.innerHTML = '<div class="top"><b>' + s[0] + '</b><span class="lv">' + s[2] + '</span></div><div class="bar">' +
+    [1, 2, 3].map(function (i) { return '<i class="' + (i <= s[1] ? "on" : "") + '"></i>'; }).join("") + "</div>";
+  box.appendChild(d);
+});
+
+// digitação
+var frases = ["agentes de IA que atendem e agendam sozinhos.", "automações que tiram trabalho repetitivo.", "robôs de Telegram e agentes no Instagram.", "sites que ficam no ar sem quebrar."];
+var el = document.getElementById("t"), fi = 0, ci = 0, del = false;
+var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tick() {
+  var f = frases[fi];
+  if (reduce) { el.textContent = f; return; }
+  ci += del ? -1 : 1;
+  el.textContent = f.slice(0, ci);
+  var t = del ? 28 : 55;
+  if (!del && ci === f.length) { del = true; t = 1700; }
+  else if (del && ci === 0) { del = false; fi = (fi + 1) % frases.length; t = 350; }
+  setTimeout(tick, t);
+}
+tick();
+
+// contadores
+function count(e) {
+  var n = parseFloat(e.dataset.n), f = e.dataset.f, start = null;
+  function fmt(v) {
+    if (f === "neg") return "−" + v.toFixed(1).replace(".", ",") + "%";
+    return Math.round(v).toLocaleString("pt-BR");
+  }
+  if (reduce) { e.textContent = fmt(n); return; }
+  function step(ts) {
+    if (!start) start = ts;
+    var p = Math.min((ts - start) / 1400, 1), ease = 1 - Math.pow(1 - p, 3);
+    e.textContent = fmt(n * ease);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// entrada ao rolar
+var io = new IntersectionObserver(function (es) {
+  es.forEach(function (x) {
+    if (!x.isIntersecting) return;
+    x.target.classList.add("in");
+    x.target.querySelectorAll("[data-n]").forEach(count);
+    x.target.querySelectorAll(".sk").forEach(function (s, i) { setTimeout(function () { s.classList.add("in"); }, i * 90); });
+    io.unobserve(x.target);
+  });
+}, { threshold: .15 });
+document.querySelectorAll(".rv").forEach(function (e) { io.observe(e); });
+</script>
+</body>
+</html>
